@@ -72,7 +72,7 @@ best_fit_init_memmap(struct Page *base, size_t n) {
     struct Page *p = base;
     for (; p != base + n; p ++) {
         assert(PageReserved(p));
-        /*LAB2 EXERCISE 2: YOUR CODE*/ 
+        /*LAB2 EXERCISE 2: 2314092 2312483 2311591*/ 
         // 清空当前页框的标志和属性信息，并将页框的引用计数设置为0
 p->flags=0;//清空标志
 p->property=0;//非块首页的property设为0
@@ -88,7 +88,7 @@ set_page_ref(p,0);//引用计数设为0（空闲页无引用）
         list_entry_t* le = &free_list;
         while ((le = list_next(le)) != &free_list) {
             struct Page* page = le2page(le, page_link);
-            /*LAB2 EXERCISE 2: YOUR CODE*/ 
+            /*LAB2 EXERCISE 2: 2314092 2312483 2311591*/ 
             // 编写代码
             // 1、当base < page时，找到第一个大于base的页，将base插入到它前面，并退出循环
             // 2、当list_next(le) == &free_list时，若已经到达链表结尾，将base插入到链表尾部
@@ -113,7 +113,7 @@ best_fit_alloc_pages(size_t n) {
     struct Page *page = NULL;
     list_entry_t *le = &free_list;
     size_t min_size = nr_free + 1;
-    /*LAB2 EXERCISE 2: YOUR CODE*/ 
+    /*LAB2 EXERCISE 2: 2314092 2312483 2311591*/ 
     // 下面的代码是first-fit的部分代码，请修改下面的代码改为best-fit
     // 遍历空闲链表，查找满足需求的空闲页框
     // 如果找到满足需求的页面，记录该页面以及当前找到的最小连续空闲页框数量
@@ -151,7 +151,7 @@ static void best_fit_free_pages(struct Page* base, size_t n) {
         p->flags = 0;
         set_page_ref(p, 0);
     }
-    /*LAB2 EXERCISE 2: YOUR CODE*/
+    /*LAB2 EXERCISE 2: 2314092 2312483 2311591*/
     // 编写代码
     // 具体来说就是设置当前页块的属性为释放的页块数、并将当前页块标记为已分配状态、最后增加nr_free的值
 
@@ -180,7 +180,7 @@ static void best_fit_free_pages(struct Page* base, size_t n) {
     list_entry_t* le = list_prev(&(base->page_link));
     if (le != &free_list) {
         p = le2page(le, page_link);
-        /*LAB2 EXERCISE 2: YOUR CODE*/
+        /*LAB2 EXERCISE 2: 2314092 2312483 2311591*/
         // 编写代码
         // 1、判断前面的空闲页块是否与当前页块是连续的，如果是连续的，则将当前页块合并到前面的空闲页块中
         // 2、首先更新前一个空闲页块的大小，加上当前页块的大小
@@ -356,4 +356,5 @@ const struct pmm_manager best_fit_pmm_manager = {
     .nr_free_pages = best_fit_nr_free_pages,
     .check = best_fit_check,
 };
+
 
