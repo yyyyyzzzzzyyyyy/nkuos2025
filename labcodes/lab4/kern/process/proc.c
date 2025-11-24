@@ -88,7 +88,7 @@ alloc_proc(void)
     struct proc_struct *proc = kmalloc(sizeof(struct proc_struct));
     if (proc != NULL)
     {
-        // LAB4:EXERCISE1 YOUR CODE
+        // LAB4:EXERCISE1 叶喆妍2314092 吴秋媛2312483 李昱2311591
         /*
          * below fields in proc_struct need to be initialized
          *       enum proc_state state;                      // Process state
@@ -205,7 +205,7 @@ void proc_run(struct proc_struct *proc)
 {
     if (proc != current)
     {
-        // LAB4:EXERCISE3 YOUR CODE
+        // LAB4:EXERCISE3 叶喆妍2314092 吴秋媛2312483 李昱2311591
         /*
          * Some Useful MACROs, Functions and DEFINEs, you can use them in below implementation.
          * MACROs or Functions:
@@ -227,14 +227,10 @@ void proc_run(struct proc_struct *proc)
         // lsatp 在 libs/riscv.h 中实现，用于写入 satp/CR3 类寄存器
         lsatp(proc->pgdir);
 
-        /*
-         * 执行上下文切换：
-         * switch_to 的参数应为指向保存/恢复区的地址（struct context *）
-         * 汇编 switch.S 会将寄存器保存到 a0 指向的区域，并从 a1 指向的区域恢复寄存器。
-         */
+        //执行上下文切换
         switch_to(&prev->context, &proc->context);
 
-        // 恢复中断（当切回到此处时，说明之前的进程又被切回来了）
+        // 恢复中断
         local_intr_restore(intr_flag);
 
     }
@@ -349,7 +345,7 @@ int do_fork(uint32_t clone_flags, uintptr_t stack, struct trapframe *tf)
         goto fork_out;
     }
     ret = -E_NO_MEM;
-    // LAB4:EXERCISE2 YOUR CODE
+    // LAB4:EXERCISE2 叶喆妍2314092 吴秋媛2312483 李昱2311591
     /*
      * Some Useful MACROs, Functions and DEFINEs, you can use them in below implementation.
      * MACROs or Functions:
